@@ -23,7 +23,7 @@ Encore
     useBuiltIns: 'usage',
     corejs: 3
   })
-  .enableSassLoader()
+  // .enableSassLoader()
 
   .enablePostCssLoader((options) => {
     options.postcssOptions = {
