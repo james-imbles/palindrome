@@ -25,4 +25,10 @@ Encore
   })
   .enableSassLoader()
 
+  .enablePostCssLoader((options) => {
+    options.postcssOptions = {
+      config: './postcss.config.js'
+    }
+  });
+
 module.exports = Encore.getWebpackConfig()
