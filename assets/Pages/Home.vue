@@ -50,9 +50,9 @@ function submitForm(){
 <AuthenticatedLayout>
     <template #header>
       <h2 
-      class="header-text font-pixelify text-3xl font-bold">Palindrome, Anagram and Pangram checker</h2>
+      class="header-text font-pixelify text-3xl w-2/3 mx-auto text-center font-bold">Palindrome, Anagram and Pangram checker</h2>
     </template>
-    <div>
+    <div class="flex flex-col">
       <div class="flex w-max my-6 mx-auto font-bold bg-green-500 rounded-lg font-pixelify">
         <button 
          @click="mode = 'palindrome'"
@@ -71,17 +71,17 @@ function submitForm(){
         <textarea
           v-model="data.inputOne"
           :class="classMap[result]"  
-          class="text-3xl font-pixelify border h-96 w-96 rounded-xl dark:bg-gray-900 p-12 transition"
+          class="text-3xl font-pixelify border border-2 h-96 w-96 rounded-xl dark:bg-gray-900 p-12 transition"
         ></textarea>
         <textarea 
           v-if="mode === 'anagram'"
           v-model="data.inputTwo"
           :class="classMap[result]"
-          class="text-3xl font-pixelify border  h-96 w-96 rounded-xl dark:bg-gray-900 p-12 transition ml-12"
+          class="text-3xl font-pixelify border border-2 h-96 w-96 rounded-xl dark:bg-gray-900 p-12 transition ml-12"
         ></textarea>
       </div>
       <button 
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      class="bg-green-500 self-center mt-6 w-max transition hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
       @click="submitForm()">Submit</button>
     </div>
 
