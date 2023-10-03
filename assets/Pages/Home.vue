@@ -1,15 +1,24 @@
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import axios from 'axios'
 
 import AuthenticatedLayout from "../Layouts/AuthenticatedLayout.vue";
 
 const mode = ref('palindrome');
 
+const props = defineProps({
+  placeholders: Object,
+})
+
 const data = reactive({
   mode: mode,
-  inputOne: null,
+  inputOne: props.placeholders[mode.value],
   inputTwo: null,
+})
+
+watch(mode, (newMode) => {
+  data.inputOne = props.placeholders[newMode][0];
+  data.inputTwo = props.placeholders[newMode][1] ?? null;
 })
 
 function submitForm(){
@@ -46,7 +55,7 @@ function submitForm(){
         class="rounded-r-lg p-2">Pangram</button>
       </div>
       <div class="flex w-max mx-auto">
-        <textarea 
+        <textarea
           v-model="data.inputOne"  
           class="text-3xl font-pixelify border border-orange-500 h-96 w-96 rounded-xl dark:bg-gray-900 p-12 transition"
         ></textarea>
