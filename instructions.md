@@ -31,3 +31,5 @@ In a separate terminal run your vue application
 ```
 npm run watch
 ```
+
+The application will then be available at http://localhost:8000/

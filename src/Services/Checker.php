@@ -54,9 +54,9 @@ class Checker
      * alphabet at least once. 
      * 
      * @param string $phrase
-     * 
+     * @return bool
      */    
-    public function isPangram(string $phrase)
+    public function isPangram(string $phrase) : bool
     {
         $phraseChars = count_chars($this->sanitizeString($phrase), 1);
         $alphaChars = count_chars(implode(range('A', 'Z')), 1);
