@@ -31,7 +31,7 @@ class Checker
      */
     public function isPalindrome(string $word) : bool
     {
-        return $word === strrev($word);
+        return $this->sanitizeString($word) === strrev($this->sanitizeString($word));
     }
     
     /**
@@ -64,6 +64,6 @@ class Checker
     }
 
     public function sanitizeString($string){
-        return preg_replace('/\s+/', '', strtoupper($string));
+        return strtoupper(preg_replace("/[^A-Za-z0-9]/","",$string));
     }
 }
