@@ -4,15 +4,22 @@ import axios from 'axios'
 
 import AuthenticatedLayout from "../Layouts/AuthenticatedLayout.vue";
 
-const mode = ref('palindrome');
-
 const props = defineProps({
   placeholders: Object,
 })
 
+const mode = ref('palindrome');
+const result = ref(0);
+
+const classMap = [
+  'border-orange-500',
+  'border-green-500',
+  'border-red-500'
+]
+
 const data = reactive({
   mode: mode,
-  inputOne: props.placeholders[mode.value],
+  inputOne: props.placeholders[mode.value][0],
   inputTwo: null,
 })
 
@@ -21,10 +28,16 @@ watch(mode, (newMode) => {
   data.inputTwo = props.placeholders[newMode][1] ?? null;
 })
 
+watch(result, (newResult) => {
+  setTimeout(() => {
+    result.value = 0
+  }, 2000);
+})
+
 function submitForm(){
   axios.post('/logic', data)
   .then(function (response) {
-    console.log(response);
+    result.value = response.data.result ? 1 : 2
   })
   .catch(function (error) {
     console.log(error);
@@ -56,13 +69,15 @@ function submitForm(){
       </div>
       <div class="flex w-max mx-auto">
         <textarea
-          v-model="data.inputOne"  
-          class="text-3xl font-pixelify border border-orange-500 h-96 w-96 rounded-xl dark:bg-gray-900 p-12 transition"
+          v-model="data.inputOne"
+          :class="classMap[result]"  
+          class="text-3xl font-pixelify border h-96 w-96 rounded-xl dark:bg-gray-900 p-12 transition"
         ></textarea>
         <textarea 
           v-if="mode === 'anagram'"
           v-model="data.inputTwo"
-          class="text-3xl font-pixelify border border-orange-500 h-96 w-96 rounded-xl dark:bg-gray-900 p-12 transition ml-12"
+          :class="classMap[result]"
+          class="text-3xl font-pixelify border  h-96 w-96 rounded-xl dark:bg-gray-900 p-12 transition ml-12"
         ></textarea>
       </div>
       <button 
