@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.font-pixelify {
+    font-family: 'Pixelify Sans', cursive;
+}

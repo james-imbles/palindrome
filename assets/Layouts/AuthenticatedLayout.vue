@@ -9,7 +9,7 @@ const darkMode = ref(true);
     <div
     :class="[darkMode ? 'dark' : '']"
     >
-        <div class="min-h-screen dark:bg-gray-900 dark:text-white">
+        <div class="min-h-screen dark:bg-gray-900 dark:text-white transition">
         <nav class="flex items-end flex-col p-6">
             <!-- Dark Mode Toggle -->
             <input
@@ -20,21 +20,18 @@ const darkMode = ref(true);
                 id="flexSwitchCheckDefault" 
             />
         </nav>
-
-
-
-
-            <!-- Page Heading -->
-            <header class="bg-global shadow" v-if="$slots.header">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <slot name="header" />
-                </div>
-            </header>
-
-            <!-- Page Content -->
-            <main class="m-12">
-                <slot />
-            </main>
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <!-- Page Heading -->
+                <header class="bg-global shadow my-6" v-if="$slots.header">
+                    <div >
+                        <slot name="header" />
+                    </div>
+                </header>
+                <!-- Page Content -->
+                <main>
+                    <slot />
+                </main>
+            </div>
         </div>
     </div>
 </template>
